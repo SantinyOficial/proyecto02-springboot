@@ -22,6 +22,33 @@
         </div>
     </div>
 </div>
+<div class="container my-3">
+    <form action="" id="searchForm" th:action="@{/cursos}">
+        <div class="row d-flex">
+            <div class="col-md-6 mt2">
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="search" id="keyword" name="keyword" th:value="${keyword}" requerid class="form-control"
+                           placeholder="Ingrese un nombre">
+                    <br>
+                    <button type="submit" class="btn btn-secondary">Buscar</button>
+                </div>
+            </div>
+            <div class="col-md-3 input-group mt-3">
+                <div class="input group-prepend">
+                    <label for="pageSize" class="input-goup-text">Elementos por pagina</label>
+                </div> &nbsp;&nbsp;&nbsp;
+                <select form="searchForm" name="size" th:value="${pageSize}" onchange="changePageSize()"
+                        class="size-select" id="pageSize">
+                    <option th:value="${s}" th:each="s : ${ {3, 6, 9} }" th:text="${s}"
+                            th:selected="${s == pageSize}">
+
+                    </option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
 <div class="container">
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-start">
@@ -52,6 +79,13 @@
 
     </table>
 </div>
+
+<script type="text/javascript">
+    function changePageSize(){
+        $("#searchForm").submit();
+    }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
